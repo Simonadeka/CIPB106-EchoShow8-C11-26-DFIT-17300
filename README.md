@@ -50,9 +50,3 @@ Kali Linux, losetup, mount, fdisk, md5sum, sqlite3, strings, Autopsy
 
 Image mounted read-only (ro). Original hash preserved in 01_original_hash.txt. All extraction logged.
 
-**AFTER PASTING:**
-1. Click green **Commit changes...** button top-right
-2. Choose **Commit directly to main**
-3. Click **Commit changes**
-
-Then show me your repo main page!
