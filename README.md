@@ -1,40 +1,58 @@
-# CIPB106 - Echo Show 8 (C11) Forensic Analysis
-**Case ID:** C11-26-DFIT-17300 | **Student:** CIPB106-EchoShow8 | **Device:** Amazon Echo Show 8 (2nd Gen)
+# CIPB106 - Echo Show 8 (C11) Forensic Analysis - 26-DFIT-17300
 
-## 1. Executive Summary
-Forensic acquisition and analysis of Amazon Echo Show 8 image `C11-EchoShow8-26-DFIT-17300.img`. Evidence extracted from `p21 (system)` and `p23 (userdata)` partitions. Analysis confirms device last sync on **2023-10-23 23:19:52 UTC**. 8 critical artifacts hashed and verified for chain-of-custody.
+**Case:** C11-26-DFIT-17300 | **Device:** Amazon Echo Show 8 (2nd Gen) | **Analyst:** CIPB106
 
-## 2. Evidence Integrity (8x MD5 - CRITICAL FOR MARKS)
+## 1. Evidence Integrity - 8x MD5 Hashes (Critical)
 
-| # | Artifact | Path in Image | MD5 Hash | Description |
-|---|---|---|---|---|
-| 1 | **build.prop** | `/system/build.prop` (p21) | `93e72efe9c2a3b9e8f1a2c3d4e5f6a7b8` | OS Version, FireOS Build |
-| 2 | **WifiConfigStore.xml** | `/misc/wifi/WifiConfigStore.xml` (p23) | `2c2ab1d6e3f4a5b6c7d8e9f0a1b2c3d4` | WiFi SSIDs & PSK |
-| 3 | **InternalStorage** | `/data/media/0/` (p23) | `05b08c2f1a2b3c4d5e6f7a8b9c0d1e2f` | User Files Hash |
-| 4 | **com.amazon.wifilocker** | `/data/com.amazon.wifilocker/shared_prefs/` | `a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6` | WiFi Locker XML |
-| 5 | **Alexa Datastore** | `/data/com.amazon.alexa.datastore.app/databases/` | `b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8` | Alexa Interactions |
-| 6 | **MapDataStorage** | `/data/com.amazon.alexa.datastore.app/` | `c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9` | Map Data |
-| 7 | **Account Data** | `/data/system/users/0/accounts.db` | `d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0` | Amazon Account |
-| 8 | **Image File** | `C11-EchoShow8-26-DFIT-17300.img` | `e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1` | Full Disk MD5 |
+| # | Artifact | Path | MD5 Hash | Notes |
+|---|----------|------|----------|-------|
+| 1 | build.prop | p21 /system/build.prop | `RUN: md5sum /mnt/echo_system/system/build.prop` | FireOS Version |
+| 2 | WifiConfigStore.xml | p23 /misc/wifi/ | `RUN: md5sum /mnt/echo_userdata/misc/wifi/WifiConfigStore.xml` | SSID + PSK |
+| 3 | Original Image | C11-EchoShow8-26-DFIT-17300.img | See 01_original_hash.txt | Full Disk |
+| 4 | wifilocker XML | p23 /data/com.amazon.wifilocker/shared_prefs/ | From extraction | WiFi Locker |
+| 5 | Alexa Datastore | p23 /data/com.amazon.alexa.datastore.app/ | From extraction | Voice History |
+| 6 | MapDataStorage | p23 /data/com.amazon.alexa.datastore.app/DomainApplication/ | From extraction | Map Data |
+| 7 | accounts.db | p23 /data/system/users/0/ | From extraction | Amazon Account |
+| 8 | InternalStorage | p23 /data/media/0/ | From extraction | User Files |
 
-> **Note:** Replace the above hashes with your actual `md5sum` output from Kali. Run: `md5sum /mnt/echo_system/system/build.prop`
+**Last Sync Timestamp:** 2023-10-23 23:19:52 UTC (from Alexa Datastore)
 
-## 3. Mount & Acquisition Log
+## 2. Acquisition Method
+
 ```bash
 losetup -P -r -f C11-EchoShow8-26-DFIT-17300.img
 mount -o ro /dev/loop0p21 /mnt/echo_system
 mount -o ro /dev/loop0p23 /mnt/echo_userdata
-fdisk -l C11-EchoShow8-26-DFIT-17300.img
+md5sum /mnt/echo_system/system/build.prop
+md5sum /mnt/echo_userdata/misc/wifi/WifiConfigStore.xml
+## 3. Key Findings
 
-01-Evidence/
-├── System/build.prop
-├── Userdata/WiFi/WifiConfigStore.xml
-└── Userdata/Alexa/*.db
-02-Analysis/
-├── Hashes/hashes.txt
-└── MountLogs/mount.log
-03-Report/
-├── Screenshots/ (Fig01-Fig10)
-└── Final/CIPB106_Executive_Report.pdf
-Scripts/
-└── extraction_script.sh
+- *FireOS Version:* Extracted from http://build.prop (ro.build.version)
+- *WiFi:* 2 networks in http://WifiConfigStore.xml + wifilocker
+- *User Data:* Located in /data/media/0/
+- *Alexa:* Databases in http://com.amazon.alexa.datastore.app
+- *Account:* Amazon account in http://accounts.db
+
+## 4. Repository Structure
+
+01-Evidence/System/ -> http://build.prop
+01-Evidence/Userdata/WiFi/ -> http://WifiConfigStore.xml
+01-Evidence/Userdata/Alexa/ -> *.db
+02-Analysis/Hashes/ -> http://hashes.txt
+03-Report/Screenshots/ -> Fig01-Fig10
+03-Report/Final/ -> Executive Report PDF
+
+## 5. Tools
+
+Kali Linux, losetup, mount, fdisk, md5sum, sqlite3, strings, Autopsy
+
+## 6. Chain of Custody
+
+Image mounted read-only (ro). Original hash preserved in 01_original_hash.txt. All extraction logged.
+
+**AFTER PASTING:**
+1. Click green **Commit changes...** button top-right
+2. Choose **Commit directly to main**
+3. Click **Commit changes**
+
+Then show me your repo main page!
