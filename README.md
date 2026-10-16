@@ -28,11 +28,11 @@
 
 ## 3. Key Findings
 
-01-- FireOS Version: From build.prop (ro.build.version)
-02-- WiFi: 2 networks in WifiConfigStore.xml + wifilocker
-03-- User Data: data/media/0/
-04-- Alexa: com.amazon.alexa.datastore.app
-05-- Account: Amazon account in accounts.db
+01-FireOS Version: From build.prop (ro.build.version)
+02-WiFi: 2 networks in WifiConfigStore.xml + wifilocker
+03-User Data: data/media/0/
+04-Alexa: com.amazon.alexa.datastore.app
+05-Account: Amazon account in accounts.db
 
 ## 4. Repository Structure
 
