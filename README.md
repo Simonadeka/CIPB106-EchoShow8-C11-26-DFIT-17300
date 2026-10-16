@@ -6,26 +6,25 @@
 
 | # | Artifact | Partition | Path |
 |---|----------|-----------|------|
-| 1 | build.prop | p21 | `system/build.prop` |
-| 2 | WifiConfigStore.xml | p23 | `misc/wifi/WifiConfigStore.xml` |
-| 3 | Original Image | - | `C11-EchoShow8-26-DFIT-17300.img` |
-| 4 | wifilocker XML | p23 | `data/com.amazon.wifilocker/shared_prefs/` |
-| 5 | Alexa Datastore | p23 | `data/com.amazon.alexa.datastore.app/databases/` |
-| 6 | MapDataStorage | p23 | `data/com.amazon.alexa.datastore.app/` |
-| 7 | accounts.db | p23 | `data/system/users/0/accounts.db` |
-| 8 | InternalStorage | p23 | `data/media/0/` |
+| 1 | build.prop | p21 | system/build.prop |
+| 2 | WifiConfigStore.xml | p23 | misc/wifi/WifiConfigStore.xml |
+| 3 | Original Image | - | C11-EchoShow8-26-DFIT-17300.img |
+| 4 | wifilocker XML | p23 | data/com.amazon.wifilocker/shared_prefs/ |
+| 5 | Alexa Datastore | p23 | data/com.amazon.alexa.datastore.app/databases/ |
+| 6 | MapDataStorage | p23 | data/com.amazon.alexa.datastore.app/ |
+| 7 | accounts.db | p23 | data/system/users/0/accounts.db |
+| 8 | InternalStorage | p23 | data/media/0/ |
 
 **Last Sync Timestamp:** 2023-10-23 23:19:52 UTC (Alexa Datastore)
-
-Hashes are stored in: `02-Analysis/Hashes/hashes.txt` and `01_original_hash.txt`
+**Hashes stored in:** 02-Analysis/Hashes/hashes.txt and 01_original_hash.txt
 
 ## 2. Acquisition Method
 
-losetup -P -r -f http://C11-EchoShow8-26-DFIT-17300.img
+losetup -P -r -f C11-EchoShow8-26-DFIT-17300.img
 mount -o ro /dev/loop0p21 /mnt/echo_system
 mount -o ro /dev/loop0p23 /mnt/echo_userdata
-md5sum /mnt/echo_system/system/build.prop
-md5sum /mnt/echo_userdata/misc/wifi/WifiConfigStore.xml
+md5sum system/build.prop
+md5sum misc/wifi/WifiConfigStore.xml
 
 ## 3. Key Findings
 
@@ -51,7 +50,3 @@ Kali Linux, losetup, mount, fdisk, md5sum, sqlite3, strings, Autopsy
 ## 6. Chain of Custody
 
 Image mounted read-only. Original hash in 01_original_hash.txt. All extraction logged.
-
-This version uses `backticks` so GitHub will NOT turn it into blue `http://` links.
-
-After you commit, send me new screenshot - then we upload your evidence files manually.
