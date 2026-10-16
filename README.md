@@ -23,8 +23,8 @@
 losetup -P -r -f C11-EchoShow8-26-DFIT-17300.img
 mount -o ro /dev/loop0p21 /mnt/echo_system
 mount -o ro /dev/loop0p23 /mnt/echo_userdata
-md5sum system/build.prop
-md5sum misc/wifi/WifiConfigStore.xml
+md5sum /mnt/echo_system/system/build.prop
+md5sum /mnt/echo_userdata/misc/wifi/WifiConfigStore.xml
 
 ## 3. Key Findings
 
