@@ -20,19 +20,19 @@
 
 ## 2. Acquisition Method
 
-losetup -P -r -f C11-EchoShow8-26-DFIT-17300.img
-mount -o ro /dev/loop0p21 /mnt/echo_system
-mount -o ro /dev/loop0p23 /mnt/echo_userdata
-md5sum /mnt/echo_system/system/build.prop
-md5sum /mnt/echo_userdata/misc/wifi/WifiConfigStore.xml
+01-losetup -P -r -f C11-EchoShow8-26-DFIT-17300.img
+02-mount -o ro /dev/loop0p21 /mnt/echo_system
+03-mount -o ro /dev/loop0p23 /mnt/echo_userdata
+04-md5sum /mnt/echo_system/system/build.prop
+05-md5sum /mnt/echo_userdata/misc/wifi/WifiConfigStore.xml
 
 ## 3. Key Findings
 
-- FireOS Version: From build.prop (ro.build.version)
-- WiFi: 2 networks in WifiConfigStore.xml + wifilocker
-- User Data: data/media/0/
-- Alexa: com.amazon.alexa.datastore.app
-- Account: Amazon account in accounts.db
+01-- FireOS Version: From build.prop (ro.build.version)
+02-- WiFi: 2 networks in WifiConfigStore.xml + wifilocker
+03-- User Data: data/media/0/
+04-- Alexa: com.amazon.alexa.datastore.app
+05-- Account: Amazon account in accounts.db
 
 ## 4. Repository Structure
 
