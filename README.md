@@ -25,3 +25,16 @@ losetup -P -r -f C11-EchoShow8-26-DFIT-17300.img
 mount -o ro /dev/loop0p21 /mnt/echo_system
 mount -o ro /dev/loop0p23 /mnt/echo_userdata
 fdisk -l C11-EchoShow8-26-DFIT-17300.img
+
+01-Evidence/
+├── System/build.prop
+├── Userdata/WiFi/WifiConfigStore.xml
+└── Userdata/Alexa/*.db
+02-Analysis/
+├── Hashes/hashes.txt
+└── MountLogs/mount.log
+03-Report/
+├── Screenshots/ (Fig01-Fig10)
+└── Final/CIPB106_Executive_Report.pdf
+Scripts/
+└── extraction_script.sh
