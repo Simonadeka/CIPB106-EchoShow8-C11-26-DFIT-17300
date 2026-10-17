@@ -89,6 +89,4 @@
 
 Fig16: sudo umount mnt_userdata mnt_system + sudo losetup -d /dev/loop0 + sudo kpartx -dv - ACPO Principle 1 - COMPLETE
 
-## 8. Redaction Notice
 
-Fig12 contains plaintext WiFi PSK - In submission PDF, redact as [REDACTED] per data protection. Hash 2c2ab1d6... remains verifiable.
