@@ -59,8 +59,7 @@
 
 ## 6. Screenshots - 25 Figures Exact Naming - No Omission
 
-1. 16.10.2026_04.52.19_REC
-2. 16.10.2026_11.51.22_REC
+
 3. Fig01_Original_EMMC_Hash_MD5_SHA1_Integrity
 4. Fig01_Partition_Table_mmls
 5. Fig02_Image_Integrity_MD5_SHA256_Hashes
